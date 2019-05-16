@@ -1,0 +1,25 @@
+{:paths ["db" "resources" "src"]
+
+ :deps
+ {org.clojure/clojure {:mvn/version "1.10.0"}
+  coast-framework/coast.theta {:git/url "https://github.com/coast-framework/coast"
+                               :sha "a93f94271e41db9a6f1c5572645d3e06498a860e"}
+  org.xerial/sqlite-jdbc {:mvn/version "3.25.2"}}
+
+ :aliases
+ {:test
+  {:extra-paths ["test"]
+   :main-opts ["-m" "cognitect.test-runner"]
+   :extra-deps
+   {com.cognitect/test-runner {:git/url "git@github.com:cognitect-labs/test-runner"
+                               :sha "5f2b5c2efb444df76fb5252102b33f542ebf7f58"}}}
+
+  :uberjar
+  {:main-opts ["-m" "mach.pack.alpha.capsule"
+               "-m" "server"
+               "-e" "target"
+               "target/coasttest.jar"]
+   :extra-deps {pack/pack.alpha {:git/url "https://github.com/juxt/pack.alpha.git"
+                                 :sha "d9023b24c3d589ba6ebc66c5a25c0826ed28ead5"}}}
+
+  :repl {:extra-deps {nrepl {:mvn/version "0.6.0"}}}}}
